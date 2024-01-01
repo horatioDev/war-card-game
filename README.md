@@ -4,6 +4,8 @@
 
 This is a simple card game where two players draw cards from a shuffled deck. The game determines the winner based on the card values. In case of a tie, a "war" is initiated.
 
+![War Card Game](img/card-game.png)
+
 ## Features
 
 - Fetches a shuffled deck from the Deck of Cards API.
