@@ -10,7 +10,50 @@
 /******************************************
 /* LAYOUT
 /*******************************************/
+/* Base styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
 
+section, button, p, small {
+  padding: 15px;
+  text-align: center;
+}
+
+section {
+  border: 1px solid #ddd;
+}
+
+/* Specific element styles */
+.container h1 {
+  grid-column: 1 / -1; /* This spans across all columns */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+small {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 
 /******************************************

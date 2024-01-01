@@ -7,14 +7,47 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-		<title>Card Game | API</title>
+		<title>War Card Game | API</title>
 
 		<!-- external CSS link -->
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		
+		<div class="container">
+			<h1>Card Game</h1>
+			<!-- Player 1 Hand -->
+			<section id="player1Hand">
+				<h2>Player 1</h2>
+				<img src="" alt="playing card">
+			</section>
+			
+	
+			<!-- Player 2 Hand -->
+			<section id="player2Hand">	
+				<h2>Player 2</h2>
+				<img src="" alt="playing card">
+			</section>
+			<!-- Buttons for adding cards to hands and dealing new hand-->
+			<button id="draw-cards">Draw Cards</button>
+			<!-- <button id="new-hand">Deal New Hand</button><br/> -->
+			<small>(Note: Click on a playing card image to see more details)</small><hr/>
+			
+			<section id="card-holdings">
+				<!-- Display the players' hands -->
+				<p>Player 1's Hand ({{player1Cards.length}}): </p>
+				<p>Player 2's Hand ({{player2Cards.length}}): </p>
+			
+				<!-- Display Winner -->
+				<h3 class="winner"></h3>
+			
+				<!-- Cards left in the Deck -->
+				<h3 id="cards-left"></h3>
+			</section>
+
+		</div>
+
+
 
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
