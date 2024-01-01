@@ -146,6 +146,9 @@ fetch('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
 
     localStorage.setItem('deck_id', deckId);
     localStorage.setItem('remainingCards', data.remaining);
+    if(!localStorage.getItem('p1Holding') && !localStorage.getItem('p2Holding')) {
+      console.log('Both holdings not null')
+    }
     localStorage.setItem('p1Holding', 0);
     localStorage.setItem('p2Holding', 0);
 
@@ -164,7 +167,7 @@ function drawTwo() {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        handleDrawnCards(data);
+      handleDrawnCards(data);
     })
     .catch(err => {
         console.log(`error ${err}`);
@@ -182,9 +185,11 @@ function checkWinner(card1, card2) {
         winner = 'p2';
     } else {
         document.querySelector('.winner').innerText = "It's Time for WAR!!!";
+        winner = 'war'
         initiateWar();
     }
     updateHand(winner);
+  return winner
 }
 
 // Convert Face to Number
@@ -227,6 +232,7 @@ function initiateWar() {
     .then(res => res.json())
     .then(data => {
         handleWarCards(data);
+        console.log('Going to War...')
     })
     .catch(err => {
         console.log('Error', err);
@@ -239,7 +245,25 @@ function handleWarCards(data) {
   let p1WarCardVal = cardConverter(data.cards[3].value);
   let p2WarCardVal = cardConverter(data.cards[7].value);
   
-    checkWinner(p1WarCardVal, p2WarCardVal);
+  checkWinner(p1WarCardVal, p2WarCardVal);
+
+  console.log(checkWinner(p1WarCardVal, p2WarCardVal))
+  if (p1WarCardVal > p2WarCardVal) {
+    document.querySelector('.winner').innerText = 'Player 1 Wins the War!';
+    winner = 'p1';
+    let afterWarHand = Number(localStorage.getItem(`${winner}Holding`))
+    afterWarHand += 6
+    localStorage.setItem(`p1Holding`, afterWarHand)
+  } else if (p1WarCardVal < p2WarCardVal) {
+    document.querySelector('.winner').innerText = 'Player 2 Wins the War!';
+    winner = 'p2';
+    let afterWarHand = Number(localStorage.getItem(`${winner}Holding`))
+    afterWarHand += 6
+    localStorage.setItem(`p2Holding`, afterWarHand)
+  } else {
+    document.querySelector('.winner').innerText = "It's Time for WAR!!!";
+    initiateWar();  
+  }
 }
 
 // Update the UI with initial data
